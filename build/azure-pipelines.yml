@@ -1,6 +1,10 @@
 trigger:
 - master
 
+variables:
+  AZ_SUBSCRIPTION: $(azureSubscription)
+  AZ_ACR_NAME: $(registry)
+
 pool:
   vmImage: 'windows-2019'
 
@@ -38,10 +42,10 @@ jobs:
       useLegacyPattern: false
       enableTelemetry: true
 
-  - task: AzureCLI@2
+  - task: AzureCLI@2    
     inputs:
-      azureSubscription: $(azureSubscription)
+      azureSubscription: $(AZ_SUBSCRIPTION)
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
-      inlineScript: 'az acr build -t aspnet:$(mainTag) -r $(registry) . --platform windows --no-wait'
+      inlineScript: 'az acr build -t aspnet:$(mainTag) -r $(AZ_ACR_NAME) . --platform windows --no-wait'
       workingDirectory: '$(Build.SourcesDirectory)'
