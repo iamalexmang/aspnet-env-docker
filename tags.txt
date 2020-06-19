@@ -1,0 +1,15 @@
+4.8-20200527-windowsservercore-2004,4.8-windowsservercore-2004,4.8
+3.5-20200527-windowsservercore-2004,4.8-3.5-20200527-windowsservercore-2004,3.5-windowsservercore-2004,4.8-3.5-windowsservercore-2004,3.5,4.8-3.5
+4.8-20200512-windowsservercore-1909,4.8-windowsservercore-1909,4.8
+3.5-20200512-windowsservercore-1909,3.5-windowsservercore-1909,3.5,4.8-3.5
+4.8-20200512-windowsservercore-1903,4.8-windowsservercore-1903,4.8
+3.5-20200512-windowsservercore-1903,3.5-windowsservercore-1903,3.5,4.8-3.5
+4.8-20200512-windowsservercore-ltsc2019,4.8-windowsservercore-ltsc2019,4.8
+4.7.2-20200512-windowsservercore-ltsc2019,4.7.2-windowsservercore-ltsc2019,4.7.2
+3.5-20200512-windowsservercore-ltsc2019,3.5-windowsservercore-ltsc2019,3.5,4.8-3.5
+4.8-20200512-windowsservercore-ltsc2016,4.8-windowsservercore-ltsc2016,4.8
+4.7.2-20200609-windowsservercore-ltsc2016,4.7.2-windowsservercore-ltsc2016,4.7.2
+4.7.1-20200609-windowsservercore-ltsc2016,4.7.1-windowsservercore-ltsc2016,4.7.1
+4.7-20200609-windowsservercore-ltsc2016,4.7-windowsservercore-ltsc2016,4.7
+4.6.2-20200512-windowsservercore-ltsc2016,4.6.2-windowsservercore-ltsc2016,4.6.2
+3.5-20200609-windowsservercore-ltsc2016,3.5-windowsservercore-ltsc2016,3.5,4.8-3.5

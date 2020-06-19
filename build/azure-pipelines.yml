@@ -1,0 +1,47 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-2019'
+
+jobs:
+- job: compute_tags
+  displayName: Compute container image tags
+  steps:
+  - task: PowerShell@2
+    inputs:
+      filePath: 'build\Get-TagMatrix.ps1'
+      workingDirectory: '$(Build.SourcesDirectory)'
+    name: mtrx
+    displayName: 'Configure matrix strategy'
+
+- job: build_push
+  displayName: Build and push container images to Docker Hub
+  dependsOn: compute_tags
+  strategy:
+    matrix: $[ dependencies.compute_tags.outputs['mtrx.multiplier'] ]
+  steps:
+  - powershell: |
+      Write-Host "Main tag $env:mainTag"
+      Write-Host "Additional tags $env:additionalTags"
+    displayName: 'Log main and additional tags'
+  - task: replacetokens@3
+    displayName: Tweak Dockerfile to inherit official repository:tag
+    inputs:
+      targetFiles: 'Dockerfile'
+      encoding: 'auto'
+      writeBOM: true
+      actionOnMissing: 'warn'
+      keepToken: false
+      tokenPrefix: '#{'
+      tokenSuffix: '}#'
+      useLegacyPattern: false
+      enableTelemetry: true
+
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: $(azureSubscription)
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: 'az acr build -t aspnet:$(mainTag) -r $(registry) . --platform windows --no-wait'
+      workingDirectory: '$(Build.SourcesDirectory)'
