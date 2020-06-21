@@ -43,5 +43,12 @@ jobs:
       azureSubscription: $(azureSubscription)
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
-      inlineScript: 'az acr build -t aspnet:$(mainTag) -r $(registry) . --platform windows --no-wait'     
+      inlineScript: 'az acr build -t aspnet:$(mainTag) -r $(registry) . --platform windows'     
       workingDirectory: '$(Build.SourcesDirectory)'
+
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: 'Azure Subscription (DEVTEST_MPN-6K)'
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: 'docker pull $(registry).azurecr.io/aspnet:$(mainTag)'
