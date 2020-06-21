@@ -39,7 +39,7 @@ jobs:
       enableTelemetry: true
 
   - task: AzureCLI@2
-    displayName: Build using ACR
+    displayName: Build container image using ACR
     inputs:
       azureSubscription: $(azureSubscription)
       scriptType: 'bash'
@@ -48,7 +48,7 @@ jobs:
       workingDirectory: '$(Build.SourcesDirectory)'
 
   - task: AzureCLI@2
-    displayName: Authenticate docker CLI against ($registry).azurecr.io
+    displayName: Authenticate docker CLI against $(registry).azurecr.io
     inputs:
       azureSubscription: $(azureSubscription)
       scriptType: 'bash'
@@ -56,7 +56,7 @@ jobs:
       inlineScript: 'az acr login -n $(registry).azurecr.io'
 
   - task: AzureCLI@2
-    displayName: Pull built image locally
+    displayName: Pull previously built image locally
     inputs:
       azureSubscription: $(azureSubscription)
       scriptType: 'bash'
